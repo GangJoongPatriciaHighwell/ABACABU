@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIM KYEONG JOONG - CYBER PORTFOLIO</title>
+    <title>KIM KYEONG JOONG - CYBER PORTFOLIO v2.0</title>
     <style>
         /* ------------------ 기본 스타일 및 사이버펑크 변수 정의 ------------------ */
         :root {
             --bg-cyber: #050a14; /* 아주 어두운 밤하늘 색 */
-            --bg-grid: rgba(0, 255, 255, 0.03); /* 아주 연한 네온 그리드 */
+            --bg-grid: rgba(0, 255, 255, 0.03); /* 연한 네온 그리드 */
             --navy-dark: #02060c; /* 더 깊은 어둠 */
             --navy-light: #0d1a2f; /* 사이드바 메뉴용 어두운 파랑 */
             --neon-cyan: #00ffff; /* 시그니처 네온 사이안 */
@@ -16,7 +16,7 @@
             --neon-yellow: #ffff00; /* 경고/하이라이트 네온 노랑 */
             --text-cyber: #ccd6f6; /* 밝은 회색/초록 톤 */
             --text-muted: #8892b0;
-            --sidebar-width: 280px;
+            --sidebar-width: 250px; /* 사이드바 폭 축소 */
             --glitch-filter: drop-shadow(0 0 2px var(--neon-cyan)) drop-shadow(0 0 5px var(--neon-magenta));
         }
 
@@ -24,61 +24,54 @@
         body { 
             font-family: 'Orbitron', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* 미래지향적 폰트 */
             background-color: var(--bg-cyber); 
-            background-image: linear-gradient(var(--bg-grid) 1px, transparent 1px), linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
-            background-size: 50px 50px; /* 그리드 배경 */
+            /* 복잡한 사이버펑크 배경: 그리드 + 회로 패턴 + 한자 네온 */
+            background-image: 
+                linear-gradient(var(--bg-grid) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px),
+                repeating-linear-gradient(45deg, rgba(100,255,218,0.01) 0px, rgba(100,255,218,0.01) 2px, transparent 2px, transparent 10px),
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48dGV4dCB4PSIxMCIgeT0iNTAiIGZpbGw9InJnYmEoMCwyNTUsMjU1LDAuMDUpIiBmb250LWZhbWlseT0iJ09yYml0cm9uJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMCI+6YeRPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmaWxsPSJyZ2JhKDI1NSwwLDI1NSwwLjA1KSIgZm9udC1mYW1pbHk9IidPcmJpdHJvbicsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiPuW9pTw9L3RleHQ+PC9zdmc+');
+            background-size: 50px 50px, 50px 50px, 100% 100%, 300px 300px; 
             color: var(--text-cyber); 
             display: flex; 
             height: 100vh; 
             overflow: hidden; 
+            position: relative;
         }
         
         /* ------------------ 사이드바 (왼쪽 네온 영역) ------------------ */
         .sidebar { 
             flex: 0 0 var(--sidebar-width); 
-            background-color: var(--navy-dark); 
+            background-color: rgba(2, 6, 12, 0.9); /* 약간 투명한 남색 */
+            backdrop-filter: blur(5px); /* 흐림 효과 */
             color: #f8f9fa; 
             display: flex; 
             flex-direction: column; 
-            padding: 40px 30px; 
-            box-shadow: 4px 0 15px rgba(0,0,0,0.3); 
+            padding: 40px 25px; 
+            box-shadow: 4px 0 15px rgba(0,0,0,0.5); 
             border-right: 2px solid var(--neon-cyan); /* 네온 테두리 */
-            position: relative;
+            z-index: 15; /* 프로필 위로 */
         }
         
-        /* 사이드바 글리치 효과 프레임 */
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
-            pointer-events: none;
-        }
-
-        /* 좌측 상단 이름 영역 (네온 효과) */
-        .sidebar-header { margin-bottom: 60px; border-bottom: 1px solid rgba(100,255,218,0.1); padding-bottom: 25px; text-align: center;}
-        .sidebar-header h2 { 
-            font-size: 1.6em; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 2px; 
-            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); /* 네온 글로우 */
-        }
-        .sidebar-header .title-sub { font-size: 0.9em; color: var(--neon-yellow); font-weight: 400; margin-top: 5px; display: block; text-shadow: 0 0 5px var(--neon-yellow);}
-        
-        /* 네비게이션 메뉴 스타일 (네온 글로우) */
+        /* 네비게이션 메뉴 스타일 (네온 글로우 강화) */
         .nav-menu ul { list-style-type: none; }
-        .nav-menu li { margin-bottom: 20px; }
+        .nav-menu li { margin-bottom: 25px; }
         .nav-menu a, .nav-menu .homework-parent { 
             display: flex; align-items: center; padding: 15px 20px; 
             color: #a8b2d1; text-decoration: none; border-radius: 12px; 
             transition: 0.3s ease; cursor: pointer; font-weight: 500; font-size: 1.1em; 
             border: 1px solid transparent;
+            text-shadow: 0 0 5px rgba(168,178,209,0.5);
         }
         
-        /* 호버 및 활성화 상태 (네온 강조) */
+        /* 호버 및 활성화 상태 (네온 강조 및 펄스 애니메이션) */
         .nav-menu a:hover, .nav-menu .homework-parent:hover { 
             background-color: var(--navy-light); 
             color: var(--neon-cyan); 
             transform: translateX(5px); 
-            box-shadow: 0 0 10px var(--neon-cyan); 
+            box-shadow: 0 0 15px var(--neon-cyan); 
             border-color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+            animation: pulse-cyan 1.5s infinite; /* 네온 펄스 */
         }
         .nav-menu .homework-parent::after { content: ' ▼'; font-size: 0.7em; margin-left: auto; transition: transform 0.3s; color: #444c66; }
         
@@ -90,100 +83,137 @@
             transition: all 0.4s ease-in-out; 
         }
         .has-submenu.open .sub-menu { max-height: 200px; opacity: 1; margin-top: 10px; }
-        .has-submenu.open .homework-parent::after { transform: rotate(-180deg); color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+        .has-submenu.open .homework-parent::after { transform: rotate(-180deg); color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
         
         /* 서브메뉴 링크 스타일 */
-        .sub-menu li { margin-bottom: 10px; }
+        .sub-menu li { margin-bottom: 15px; }
         .sub-menu a { padding: 10px 15px; font-size: 1em; color: #8892b0; border: none; background-color: transparent;}
-        .sub-menu a:hover { background-color: transparent; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); transform: none; box-shadow: none;}
+        .sub-menu a:hover { background-color: transparent; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); transform: none; box-shadow: none; animation: none;}
 
         /* ------------------ 메인 콘텐츠 (오른쪽 영역) ------------------ */
         .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; position: relative;}
         
-        /* 우측 상단 어두운 네온 헤더 */
-        .content-header { 
-            background-color: var(--navy-dark); padding: 30px 50px; 
-            border-bottom: 2px solid var(--neon-magenta); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            position: sticky; top: 0; z-index: 5;
+        /* ------------------ 상단 va11halla 배너 (디시 갤로그 스타일) ------------------ */
+        .va11halla-banner { 
+            width: 100%; height: 250px; /* 배너 높이 */
+            background-image: url('va11halla.gif'); 
+            background-size: cover; background-position: center; 
+            border-bottom: 3px solid var(--neon-magenta); /* 마젠타 네온 테두리 */
+            box-shadow: 0 5px 20px rgba(255,0,255,0.3);
+            position: relative; overflow: hidden;
         }
-        .content-header h1 { 
-            font-size: 2.2em; font-weight: 700; color: white; 
-            text-shadow: 0 0 5px var(--neon-magenta), 0 0 10px var(--neon-magenta); /* 마젠타 네온 */
-        }
-        .content-header p { font-size: 1.1em; color: var(--text-muted); margin-top: 5px; text-shadow: 0 0 5px rgba(136,146,176,0.5);}
-        
-        /* 실제 콘텐츠 바디 */
-        .content-body { padding: 60px 50px; flex: 1; display: flex; justify-content: center; align-items: flex-start;}
-        
-        /* 프로필 카드 & 이미지 컨테이너 (사이버펑크 레이아웃) */
-        .cyber-container { display: flex; align-items: flex-start; gap: 40px; width: 100%; max-width: 1200px; }
-        
-        /* 프로필 카드 스타일 (글래스모피즘 & 네온 테두리) */
-        .info-card { 
-            flex: 1; 
-            background-color: rgba(13, 26, 47, 0.6); /* 반투명 배경 */
-            backdrop-filter: blur(10px); /* 흐림 효과 */
-            padding: 50px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-            border: 2px solid var(--neon-cyan); /* 사이안 네온 테두리 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            position: relative;
-            overflow: hidden;
-        }
-        .info-card::before { /* 카드 스캔라인 효과 */
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,255,255,0.02), rgba(0,255,255,0.02) 1px, transparent 1px, transparent 2px);
-            pointer-events: none;
-        }
-        .info-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,255,255,0.2); }
-        .info-card h2 { 
-            color: white; margin-bottom: 30px; font-size: 2em; font-weight: 700; 
-            border-left: 6px solid var(--neon-cyan); padding-left: 20px; 
-            text-shadow: 0 0 10px var(--neon-cyan);
-        }
-        .profile-item { display: flex; align-items: center; margin-bottom: 20px; font-size: 1.2em;}
-        .profile-label { font-weight: 600; color: var(--neon-yellow); width: 150px; text-shadow: 0 0 5px var(--neon-yellow);}
-        .profile-value { color: var(--text-cyber); }
-        
-        /* ------------------ 사이버펑크 이미지 영역 ------------------ */
-        .image-display { flex: 0 0 500px; display: flex; flex-direction: row; gap: 20px; }
-        
-        /* 이미지 박스 공통 스타일 (네온 프레임) */
-        .img-box { flex: 1; position: relative; overflow: hidden; border-radius: 20px; border: 2px solid var(--neon-magenta); box-shadow: 0 10px 25px rgba(255,0,255,0.2); transition: 0.5s ease; }
-        .img-box:hover { transform: scale(1.05); box-shadow: 0 15px 35px rgba(255,0,255,0.4); border-color: var(--neon-cyan); filter: var(--glitch-filter);}
-        
-        /* 이미지 스타일 */
-        .cyber-img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; display: block;}
-        
-        /* 이미지 글리치 효과 프레임 */
-        .img-box::before {
+        .va11halla-banner::before { /* 배너 스캔라인 효과 */
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: repeating-linear-gradient(0deg, rgba(255,0,255,0.05), rgba(255,0,255,0.05) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+        }
+        
+        /* ------------------ 실제 콘텐츠 바디 ------------------ */
+        .content-body { padding: 0 50px 60px 50px; flex: 1; display: flex; justify-content: center; align-items: flex-start; position: relative; }
+        
+        /* 프로필 카드 & 이미지 컨테이너 (사이버펑크 레이아웃 v2) */
+        .cyber-container-v2 { 
+            display: flex; align-items: flex-start; gap: 50px; width: 100%; max-width: 1400px; 
+            position: relative; top: -80px; /* 배너를 덮는 효과 */
+            z-index: 10;
+        }
+        
+        /* 프로필 카드 스타일 (글래스모피즘 & 네온 테두리 강화) */
+        .info-card { 
+            flex: 1; 
+            background-color: rgba(13, 26, 47, 0.7); /* 반투명 배경 */
+            backdrop-filter: blur(15px); /* 흐림 효과 강화 */
+            padding: 60px; /* 패딩 증가 */
+            border-radius: 25px; 
+            box-shadow: 0 15px 40px rgba(0,255,255,0.3); /* 사이안 네온 글로우 */
+            border: 3px solid var(--neon-cyan); /* 사이안 네온 테두리 강화 */
+            transition: all 0.3s ease; 
+            position: relative;
+            overflow: hidden;
+            min-height: 400px; /* 최소 높이 설정 (경력 추가 공간) */
+        }
+        .info-card::before { /* 카드 스캔라인 및 글리치 효과 */
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,255,255,0.03), rgba(0,255,255,0.03) 1px, transparent 1px, transparent 2px);
+            pointer-events: none; z-index: 1;
+        }
+        .info-card::after { /* 카드 호버 시 네온 펄스 효과 */
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 22px;
+            box-shadow: inset 0 0 20px var(--neon-cyan);
+            opacity: 0; transition: 0.3s ease;
+        }
+        .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,255,255,0.5); }
+        .info-card:hover::after { opacity: 1; }
+        
+        /* 이름 영역 (네온 사이안 글로우 강화) */
+        .info-card h2 { 
+            color: white; margin-bottom: 40px; font-size: 2.8em; font-weight: 800; /* 폰트 크기 증가 */
+            text-transform: uppercase; letter-spacing: 3px;
+            text-shadow: 0 0 15px var(--neon-cyan), 0 0 25px var(--neon-cyan);
+            position: relative; padding-bottom: 20px;
+        }
+        .info-card h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100px; height: 5px; background-color: var(--neon-cyan); border-radius: 3px; box-shadow: 0 0 10px var(--neon-cyan);}
+        
+        /* 프로필 정보 스타일 (네온 노랑 라벨) */
+        .profile-item { display: flex; align-items: center; margin-bottom: 25px; font-size: 1.3em;}
+        .profile-label { font-weight: 700; color: var(--neon-yellow); width: 180px; text-shadow: 0 0 8px var(--neon-yellow); text-transform: uppercase; letter-spacing: 1px;}
+        .profile-value { color: var(--text-cyber); text-shadow: 0 0 5px var(--text-cyber);}
+        
+        /* ------------------ 사이버펑크 라쳇 이미지 영역 (강화) ------------------ */
+        .rachet-display { flex: 0 0 450px; /* 크기 대폭 증가 */ position: relative; top: 30px;}
+        
+        /* 라쳇 이미지 박스 (네온 마젠타 프레임) */
+        .img-box { 
+            position: relative; overflow: hidden; border-radius: 25px; 
+            border: 3px solid var(--neon-magenta); /* 마젠타 네온 테두리 */
+            box-shadow: 0 15px 35px rgba(255,0,255,0.4); 
+            transition: 0.5s ease; 
+        }
+        .img-box:hover { 
+            transform: scale(1.08) rotate(2deg); /* 확대 및 회전 */
+            box-shadow: 0 20px 50px rgba(255,0,255,0.6); 
+            border-color: var(--neon-cyan); 
+            filter: var(--glitch-filter) animation: glitch-border 0.2s 3 ease-in-out;
+        }
+        
+        /* 라쳇 이미지 스타일 */
+        .rachet-img { width: 100%; height: auto; border-radius: 22px; display: block;}
+        
+        /* 이미지 스캔라인 및 글리치 효과 프레임 */
+        .img-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(255,0,255,0.08), rgba(255,0,255,0.08) 1px, transparent 1px, transparent 2px);
             pointer-events: none; z-index: 1;
         }
 
+        /* ------------------ 휘황찬란한 네온 애니메이션 효과 ------------------ */
+        @keyframes pulse-cyan { 0% { box-shadow: 0 0 10px var(--neon-cyan); } 50% { box-shadow: 0 0 25px var(--neon-cyan); } 100% { box-shadow: 0 0 10px var(--neon-cyan); } }
+        @keyframes pulse-magenta { 0% { box-shadow: 0 0 10px var(--neon-magenta); } 50% { box-shadow: 0 0 25px var(--neon-magenta); } 100% { box-shadow: 0 0 10px var(--neon-magenta); } }
+        @keyframes glitch-border { 0% { border-color: var(--neon-magenta); } 50% { border-color: var(--neon-cyan); } 100% { border-color: var(--neon-magenta); } }
+
         /* 반응형 디자인 (화면이 작을 때) */
         @media (max-width: 1200px) { 
-            .cyber-container { flex-direction: column; text-align: center; align-items: center;} 
-            .image-display { flex: 0 0 auto; width: 100%; justify-content: center; margin-bottom: 30px; } 
-            .info-card h2 { border-left: none; padding-left: 0; }
+            .cyber-container-v2 { flex-direction: column; text-align: center; align-items: center; top: -50px;} 
+            .rachet-display { flex: 0 0 auto; width: 100%; max-width: 400px; justify-content: center; margin-top: 30px; top: 0; } 
+            .info-card h2 { padding-left: 0; }
+            .info-card h2::after { left: 50%; transform: translateX(-50%); }
             .profile-item { justify-content: center; }
         }
         @media (max-width: 900px) { 
             body { flex-direction: column; overflow: auto; height: auto; background-attachment: fixed;} 
-            .sidebar { flex: 0 0 auto; width: 100%; padding: 20px; flex-direction: row; align-items: center; border-right: none; border-bottom: 2px solid var(--neon-cyan); } 
-            .sidebar-header { margin-bottom: 0; border: none; padding: 0; margin-right: 40px; text-align: left;} 
+            .sidebar { flex: 0 0 auto; width: 100%; padding: 20px; flex-direction: row; align-items: center; border-right: none; border-bottom: 2px solid var(--neon-cyan); position: relative;} 
             .nav-menu { flex: 1; } 
             .nav-menu ul { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;} 
             .nav-menu li { margin: 0; } 
             .nav-menu a, .nav-menu .homework-parent { padding: 10px 15px; font-size: 1em; }
-            .content-header { padding: 20px 30px; }
+            .va11halla-banner { height: 150px;}
+            .cyber-container-v2 { top: -30px;}
             .content-body { padding: 30px 20px; }
-            .info-card { padding: 30px; }
-            .image-display { flex-direction: column; align-items: center;}
-            .img-box { width: 80%; max-width: 300px; }
+            .info-card { padding: 30px; min-height: auto;}
+            .info-card h2 { font-size: 2em; }
+            .profile-item { font-size: 1em;}
+            .rachet-display { width: 80%; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -191,10 +221,6 @@
 <body>
     <div class="site-container">
         <aside class="sidebar">
-            <header class="sidebar-header">
-                <h2>KYEONG JOONG</h2>
-                <span class="title-sub">Cyber Portfolio v1.0</span>
-            </header>
             <nav class="nav-menu">
                 <ul>
                     <li><a href="https://sites.google.com/view/gangjoong/%ED%99%88" target="_blank">HOMEWORK 1</a></li>
@@ -202,10 +228,10 @@
                     <li class="has-submenu" id="homework2Submenu">
                         <span class="homework-parent">HOMEWORK 2</span>
                         <ul class="sub-menu">
-                            <li><a href="hw2_1.html">2-1</a></li>
-                            <li><a href="hw2_2.html">2-2</a></li>
-                            <li><a href="hw2_3.html">2-3</a></li>
-                            <li><a href="hw2_4.html">2-4</a></li>
+                            <li><a href="hw2_1.html">2-1 Layout</a></li>
+                            <li><a href="hw2_2.html">2-2 Performing Arts</a></li>
+                            <li><a href="hw2_3.html">2-3 New Feature</a></li>
+                            <li><a href="hw2_4.html">2-4 Project Page</a></li>
                         </ul>
                     </li>
                     <li><a href="#">HOMEWORK 3</a></li>
@@ -215,46 +241,24 @@
         </aside>
         
         <main class="main-content">
-            <header class="content-header">
-                <h1>DONGSEO UNIV.</h1>
-                <p>Cybernetic Engineering Portfolio</p>
-            </header>
+            <div class="va11halla-banner"></div>
             
             <div class="content-body">
-                <div class="cyber-container">
+                <div class="cyber-container-v2">
                     <section class="info-card">
-                        <h2>Profile</h2>
-                        <div class="profile-item">
-                            <span class="profile-label">전공:</span>
-                            <span class="profile-value">컴퓨터공학전공</span>
-                        </div>
-                        <div class="profile-item">
-                            <span class="profile-label">학년:</span>
-                            <span class="profile-value">2학년</span>
-                        </div>
+                        <h2>KIM KYEONG JOONG</h2>
+                        <div class="profile-details">
+                            <div class="profile-item">
+                                <span class="profile-label">전공:</span>
+                                <span class="profile-value">컴퓨터공학전공</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-label">학년:</span>
+                                <span class="profile-value">2학년</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-label">이메일:</span>
+                                <span class="profile-value">rudwnd719@gmail.com</span>
+                            </div>
+                            </div>
                     </section>
-                    
-                    <aside class="image-display">
-                        <div class="img-box">
-                            <img src="rachet.jpg" alt="Ratchet & Clank" class="cyber-img">
-                        </div>
-                        <div class="img-box">
-                            <img src="va11halla.gif" alt="VA-11 Hall-A" class="cyber-img">
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </main>
-    </div>
-    
-    <script>
-        // 간단한 JS로 서브메뉴 펼침/숨김 토글
-        const hw2Parent = document.querySelector('.has-submenu .homework-parent');
-        const hw2Li = document.getElementById('homework2Submenu');
-        
-        hw2Parent.addEventListener('click', function() {
-            hw2Li.classList.toggle('open');
-        });
-    </script>
-</body>
-</html>
