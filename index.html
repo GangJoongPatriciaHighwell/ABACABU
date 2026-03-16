@@ -3,28 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Homework</title>
+    <title>KIM KYEONG JOONG - PORTFOLIO & HOMEWORK</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        ul { line-height: 1.8; }
-        .sub-menu { margin-left: 20px; }
+        /* 기본 스타일 리셋 */
+        body, h1, h2, ul, li { margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; display: flex; height: 100vh; overflow: hidden; }
+        
+        /* 메인 컨테이너 (Flexbox) */
+        .site-container { display: flex; width: 100%; height: 100%; }
+        
+        /* ------------------ 사이드바 (왼쪽 남색 영역) ------------------ */
+        .sidebar { flex: 0 0 280px; background-color: #0a192f; color: #f8f9fa; display: flex; flex-direction: column; padding: 30px; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
+        
+        /* 좌측 상단 이름 영역 */
+        .sidebar-header { margin-bottom: 50px; border-bottom: 2px solid #112240; padding-bottom: 20px; }
+        .sidebar-header h2 { font-size: 1.8em; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1.5px; }
+        
+        /* 네비게이션 메뉴 스타일 */
+        .nav-menu ul { list-style-type: none; }
+        .nav-menu li { margin-bottom: 15px; }
+        .nav-menu a, .nav-menu .homework-parent { display: block; padding: 12px 15px; color: #8892b0; text-decoration: none; border-radius: 8px; transition: 0.3s; cursor: pointer; font-weight: 500; font-size: 1.1em; }
+        
+        /* 호버 및 활성화 상태 */
+        .nav-menu a:hover, .nav-menu .homework-parent:hover { background-color: #112240; color: #64ffda; }
+        .nav-menu .active > a, .nav-menu .active > .homework-parent { color: #64ffda; font-weight: 700; background-color: #112240; }
+        
+        /* ------------------ HOMEWORK 2 서브메뉴 스타일 (숨김/펼침) ------------------ */
+        .has-submenu .sub-menu { display: none; margin-left: 20px; border-left: 2px solid #112240; padding-left: 10px; opacity: 0; transition: opacity 0.4s, transform 0.4s; transform: translateY(-10px); }
+        .has-submenu.open .sub-menu { display: block; opacity: 1; transform: translateY(0); animation: slideDown 0.4s ease-out; }
+        .has-submenu .homework-parent::after { content: ' ▼'; font-size: 0.8em; float: right; transition: transform 0.3s; color: #444c66; }
+        .has-submenu.open .homework-parent::after { transform: rotate(-180deg); color: #64ffda; }
+        
+        /* 서브메뉴 링크 스타일 */
+        .sub-menu li { margin-bottom: 8px; }
+        .sub-menu a { padding: 8px 12px; font-size: 1em; color: #8892b0; }
+        .sub-menu a:hover { color: #64ffda; }
+
+        @keyframes slideDown { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
+        
+        /* ------------------ 메인 콘텐츠 (오른쪽 및 우측 상단 남색 포인트) ------------------ */
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        
+        /* 우측 상단 포인트 헤더 */
+        .content-header { background-color: #0a192f; border-bottom: 2px solid #0a192f; padding: 25px 40px; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .content-header h1 { font-size: 2em; font-weight: 600; margin-bottom: 5px; color: #f8f9fa; }
+        .content-header p { font-size: 1.1em; color: #a8b2d1; }
+        
+        /* 실제 콘텐츠 영역 */
+        .content-body { padding: 50px; flex: 1; }
+        .info-card { background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e1e8ed; max-width: 900px; }
+        .info-card h2 { color: #0a192f; margin-bottom: 25px; font-size: 1.8em; border-left: 5px solid #0a192f; padding-left: 15px; }
+        .info-card p { color: #495057; line-height: 1.8; font-size: 1.1em; margin-bottom: 20px; }
+        .info-card strong { color: #0a192f; }
+        .info-card ul { margin-left: 20px; line-height: 1.8; color: #495057; font-size: 1.1em; }
+        .info-card li { margin-bottom: 10px; }
+        .accent { color: #0a192f; font-weight: 600; }
+        
+        /* 반응형 디자인 (화면이 작을 때) */
+        @media (max-width: 900px) { body { flex-direction: column; overflow: auto; height: auto; } .sidebar { flex: 0 0 auto; width: auto; flex-direction: row; flex-wrap: wrap; padding: 20px; box-shadow: none; border-bottom: 2px solid #112240; } .sidebar-header { margin-bottom: 0; border: none; padding: 0; margin-right: 30px; } .nav-menu { flex: 1; } .nav-menu ul { display: flex; flex-wrap: wrap; gap: 10px; } .nav-menu li { margin: 0; } .has-submenu.open .sub-menu { position: absolute; background: #0a192f; border: 1px solid #112240; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); width: 200px; margin: 0; top: 100%; left: 0; padding: 15px; z-index: 10; } .content-header { padding: 20px 25px; } .content-body { padding: 25px; } }
     </style>
 </head>
 <body>
-    <h1>웹 프로그래밍 과제 목록</h1>
-    <ul>
-        <li><a href="#">HOMEWORK 1</a></li>
-        <li>
-            HOMEWORK 2
-            <ul class="sub-menu">
-                <li><a href="hw2_1.html"> 2-1 </a></li>
-                <li><a href="hw2_2.html"> 2-2 </a></li>
-                <li><a href="hw2_3.html"> 2-3 </a></li>
-                <li><a href="hw2_4.html"> 2-4 </a></li>
-            </ul>
-        </li>
-        <li><a href="#">HOMEWORK 3</a></li>
-        <li><a href="#">HOMEWORK 4</a></li>
-    </ul>
+    <div class="site-container">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h2>KIM KYEONG JOONG</h2>
+            </header>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="https://sites.google.com/view/gangjoong/%ED%99%88" target="_blank">HOMEWORK 1</a></li>
+                    
+                    <li class="has-submenu" id="homework2Submenu">
+                        <span class="homework-parent">HOMEWORK 2</span>
+                        <ul class="sub-menu">
+                            <li><a href="hw2_1.html">2-1 Layout</a></li>
+                            <li><a href="hw2_2.html">2-2 Performing Arts</a></li>
+                            <li><a href="hw2_3.html">2-3 New Feature</a></li>
+                            <li><a href="hw2_4.html">2-4 Project Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">HOMEWORK 3</a></li>
+                    <li><a href="#">HOMEWORK 4</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <h1>PORTFOLIO & HOMEWORK</h1>
+                <p>웹 프로그래밍 과제 및 개인 프로젝트 기록</p>
+            </header>
+            
+            <div class="content-body">
+                <section class="info-card">
+                    <h2>과제 목록</h2>
+                    <p>
+                        왼쪽 네비게이션 메뉴에서 과제를 선택하세요. 각 과제에 대한 상세 내용과 결과물을 확인하실 수 있습니다.
+                    </p>
+                    <p>
+                        특히 <strong class="accent">HOMEWORK 2</strong> 메뉴를 클릭하면, 2-1부터 2-4까지의 세부 과제 목록이 펼쳐집니다. 각 과제 페이지에는 이전/다음 페이지로 이동할 수 있는 버튼도 함께 구현되어 있어 편리한 열람이 가능합니다.
+                    </p>
+                    <p>
+                        <strong class="accent">HOMEWORK 1</strong>은 저의 구글 사이트로 직접 연결되도록 설정되어 있습니다.
+                    </p>
+                    <ul>
+                        <li><strong>최신 업데이트:</strong> 2023년 웹 프로그래밍 과제 2 완료 및 디자인 개편</li>
+                        <li><strong>현재 진행 중인 과제:</strong> HOMEWORK 3</li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // 간단한 JS로 서브메뉴 펼침/숨김 토글
+        const hw2Parent = document.querySelector('.has-submenu .homework-parent');
+        const hw2Li = document.getElementById('homework2Submenu');
+        
+        hw2Parent.addEventListener('click', function() {
+            hw2Li.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
