@@ -34,10 +34,10 @@
         /* ------------------ 1. 상단 배너 (VA-11 Hall-A) ------------------ */
         .top-banner {
             width: 100%;
-            height: 450px; /* 배너 높이를 350px에서 450px로 늘림! */
+            height: 550px; /* 배너 세로 높이를 550px로 대폭 확장! */
             background-image: url('va11halla.gif');
             background-size: cover;
-            background-position: top center; /* 윗부분 로고가 덜 잘리도록 기준점 변경! */
+            background-position: center center; /* 이미지가 잘려도 무조건 정중앙이 보이도록 고정 */
             border-bottom: 3px solid var(--neon-magenta);
             box-shadow: 0 5px 30px rgba(255, 0, 255, 0.4);
             position: absolute; 
@@ -58,7 +58,7 @@
             z-index: 10;
             width: 100%;
             max-width: 1200px;
-            margin-top: 280px; /* 배너가 길어진 만큼 밑으로 조금 더 내림 (200px -> 280px) */
+            margin-top: 380px; /* 프로필 카드를 더 아래로 내려서 움짤을 덜 가리게 함 */
             display: flex;
             flex-direction: column;
             align-items: center;
