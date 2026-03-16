@@ -19,7 +19,7 @@
         body { 
             font-family: 'Orbitron', sans-serif; 
             background-color: var(--bg-dark); 
-            /* 사이버펑크 그리드 배경 */
+            /* 사이버펑크 그리드 배경 (GIF 아래 빈 공간을 채워줌) */
             background-image: 
                 linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), 
                 linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
@@ -31,22 +31,26 @@
             align-items: center;
         }
 
-        /* ------------------ 1. 상단 배너 (VA-11 Hall-A) ------------------ */
-        .top-banner {
+        /* ------------------ 1. 상단 배너 (원본 비율 100% 노출) ------------------ */
+        .bg-gif-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 450px; /* 배너 높이를 350px에서 450px로 늘림! */
-            background-image: url('va11halla.gif');
-            background-size: cover;
-            background-position: top center; /* 윗부분 로고가 덜 잘리도록 기준점 변경! */
+            z-index: 0;
             border-bottom: 3px solid var(--neon-magenta);
             box-shadow: 0 5px 30px rgba(255, 0, 255, 0.4);
-            position: absolute; 
-            top: 0; left: 0;
-            z-index: 1;
         }
-        
+
+        /* 이미지 자체를 100% 너비로 맞춰서 절대 안 잘리게 만듦 */
+        .bg-gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* 배너 스캔라인 효과 */
-        .top-banner::after {
+        .bg-gif-container::after {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: repeating-linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2) 2px, transparent 2px, transparent 4px);
             pointer-events: none;
@@ -58,7 +62,8 @@
             z-index: 10;
             width: 100%;
             max-width: 1200px;
-            margin-top: 280px; /* 배너가 길어진 만큼 밑으로 조금 더 내림 (200px -> 280px) */
+            /* 화면 크기에 비례해서 마진을 줌 (GIF 중간쯤부터 덮도록) */
+            margin-top: 15vw; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -74,11 +79,11 @@
             width: 100%;
         }
 
-        /* 프로필 카드 (글래스모피즘 + 네온) */
+        /* 프로필 카드 */
         .profile-card {
             flex: 1;
             max-width: 600px;
-            background-color: rgba(5, 10, 20, 0.85);
+            background-color: rgba(5, 10, 20, 0.85); /* 겹쳐도 글씨가 잘 보이게 어둡게 */
             backdrop-filter: blur(10px);
             padding: 50px;
             border-radius: 15px;
@@ -203,6 +208,7 @@
 
         /* ------------------ 반응형 (화면 작아질 때) ------------------ */
         @media (max-width: 900px) {
+            .main-wrapper { margin-top: 100px; } /* 모바일에서는 마진 조정 */
             .profile-row { flex-direction: column; align-items: center; }
             .profile-card, .image-card { width: 90%; max-width: none; }
             .image-card { height: auto; }
@@ -213,7 +219,9 @@
 </head>
 <body>
 
-    <div class="top-banner"></div>
+    <div class="bg-gif-container">
+        <img src="va11halla.gif" alt="VA-11 Hall-A Background">
+    </div>
 
     <div class="main-wrapper">
         <div class="profile-row">
