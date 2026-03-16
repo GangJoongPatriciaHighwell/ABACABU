@@ -7,7 +7,6 @@
     <style>
         /* ------------------ 사이버펑크 변수 및 기본 설정 ------------------ */
         :root {
-            --bg-dark: #050a14; 
             --neon-cyan: #00ffff;
             --neon-magenta: #ff00ff;
             --neon-yellow: #ffff00;
@@ -16,61 +15,51 @@
 
         body, h1, h2, ul, li, p { margin: 0; padding: 0; box-sizing: border-box; }
         
+        /* ------------------ 전체 배경 움짤 설정 ------------------ */
         body { 
             font-family: 'Orbitron', sans-serif; 
-            background-color: var(--bg-dark); 
-            /* 사이버펑크 그리드 배경 (GIF 아래 빈 공간을 채워줌) */
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), 
-                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px; 
             color: var(--text-main); 
+            
+            /* 핵심: va11halla 움짤을 배경 전체로 쫙 깝니다 */
+            background-image: url('va11halla.gif');
+            background-size: cover; /* 화면을 꽉 채우도록 비율 조정 */
+            background-position: center top; /* 윗부분 글씨가 잘리지 않게 상단 기준 정렬 */
+            background-attachment: fixed; /* 스크롤해도 배경 움짤은 제자리에 고정 */
+            background-repeat: no-repeat;
+            background-color: #050a14; /* 만약의 경우를 위한 대체 배경색 */
+            
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* ------------------ 1. 상단 배너 (원본 비율 100% 노출) ------------------ */
-        .bg-gif-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 0;
-            border-bottom: 3px solid var(--neon-magenta);
-            box-shadow: 0 5px 30px rgba(255, 0, 255, 0.4);
+        /* 배경 전체에 어두운 오버레이 & 스캔라인 씌우기 (글씨 가독성 확보) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(5, 10, 20, 0.6); /* 움짤 위에 반투명 검은색을 살짝 덮음 */
+            background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2) 2px, transparent 2px, transparent 4px);
+            pointer-events: none; /* 클릭 방해 안 하게 설정 */
+            z-index: -1;
         }
 
-        /* 이미지 자체를 100% 너비로 맞춰서 절대 안 잘리게 만듦 */
-        .bg-gif-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* 배너 스캔라인 효과 */
-        .bg-gif-container::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2) 2px, transparent 2px, transparent 4px);
-            pointer-events: none;
-        }
-
-        /* ------------------ 메인 컨테이너 (정중앙 정렬) ------------------ */
+        /* ------------------ 메인 컨테이너 ------------------ */
         .main-wrapper {
             position: relative;
             z-index: 10;
             width: 100%;
             max-width: 1200px;
-            /* 화면 크기에 비례해서 마진을 줌 (GIF 중간쯤부터 덮도록) */
-            margin-top: 15vw; 
+            margin-top: 12vh; /* 화면 중앙쯤에 자연스럽게 배치되도록 여백 */
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-bottom: 100px;
         }
 
-        /* ------------------ 2. 프로필 & 이미지 영역 ------------------ */
+        /* ------------------ 프로필 & 이미지 영역 ------------------ */
         .profile-row {
             display: flex;
             justify-content: center;
@@ -79,12 +68,12 @@
             width: 100%;
         }
 
-        /* 프로필 카드 */
+        /* 프로필 카드 (배경이 비치는 유리 질감) */
         .profile-card {
             flex: 1;
             max-width: 600px;
-            background-color: rgba(5, 10, 20, 0.85); /* 겹쳐도 글씨가 잘 보이게 어둡게 */
-            backdrop-filter: blur(10px);
+            background-color: rgba(5, 10, 20, 0.7); /* 더 투명하게 해서 뒤에 움짤이 잘 비치게 함 */
+            backdrop-filter: blur(12px); /* 강력한 블러 효과 */
             padding: 50px;
             border-radius: 15px;
             border: 2px solid var(--neon-cyan);
@@ -146,12 +135,13 @@
             pointer-events: none;
         }
 
-        /* ------------------ 3. 과제(HOMEWORK) 메뉴 영역 ------------------ */
+        /* ------------------ 과제(HOMEWORK) 메뉴 영역 ------------------ */
         .homework-section {
             width: 100%;
             max-width: 800px;
             margin-top: 60px;
-            background-color: rgba(5, 10, 20, 0.85);
+            background-color: rgba(5, 10, 20, 0.7); /* 유리 질감 추가 */
+            backdrop-filter: blur(10px);
             border: 1px solid var(--neon-cyan);
             border-radius: 15px;
             padding: 30px;
@@ -172,7 +162,7 @@
             transition: all 0.3s;
         }
         .homework-menu > li:hover {
-            background: rgba(0, 255, 255, 0.15);
+            background: rgba(0, 255, 255, 0.2);
             border-color: var(--neon-cyan);
             box-shadow: 0 0 15px var(--neon-cyan);
         }
@@ -188,7 +178,6 @@
             text-shadow: 0 0 5px var(--neon-cyan);
         }
         
-        /* HOMEWORK 2 드롭다운 설정 */
         .hw-toggle-btn { display: flex; justify-content: space-between; }
         .hw-toggle-btn::after { content: '▼'; transition: transform 0.3s; }
         
@@ -197,7 +186,8 @@
             max-height: 0; 
             overflow: hidden;
             transition: max-height 0.4s ease-in-out;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 0 0 8px 8px;
         }
         .sub-menu li { border-top: 1px solid rgba(0,255,255,0.1); }
         .sub-menu a { padding: 12px 30px; font-size: 1.1em; color: #aaa; text-shadow: none;}
@@ -206,9 +196,9 @@
         .has-submenu.open .sub-menu { max-height: 300px; }
         .has-submenu.open .hw-toggle-btn::after { transform: rotate(-180deg); color: var(--neon-magenta); }
 
-        /* ------------------ 반응형 (화면 작아질 때) ------------------ */
+        /* ------------------ 반응형 설정 ------------------ */
         @media (max-width: 900px) {
-            .main-wrapper { margin-top: 100px; } /* 모바일에서는 마진 조정 */
+            .main-wrapper { margin-top: 8vh; }
             .profile-row { flex-direction: column; align-items: center; }
             .profile-card, .image-card { width: 90%; max-width: none; }
             .image-card { height: auto; }
@@ -218,10 +208,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="bg-gif-container">
-        <img src="va11halla.gif" alt="VA-11 Hall-A Background">
-    </div>
 
     <div class="main-wrapper">
         <div class="profile-row">
