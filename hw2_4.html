@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stanford Performing Arts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #cc0000; /* 스탠포드 레드 */
+            border-bottom: 2px solid white;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        header .edition {
+            text-align: right;
+            font-weight: bold;
+        }
+        .main-content {
+            display: flex;
+            gap: 40px;
+        }
+        .left-col {
+            flex: 2; /* 왼쪽 비율을 조금 더 크게 */
+        }
+        .right-col {
+            flex: 1;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .content-image {
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 10px;
+            max-width: 250px;
+        }
+        .clear {
+            clear: both;
+        }
+        /* 캘린더 리스트 스타일 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            border-top: 1px solid black;
+            padding: 10px 0;
+            font-style: italic;
+        }
+        li:last-child {
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Stanford Performing Arts</h1>
+        <div class="edition">
+            Autumn 2012<br>Edition
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="left-col">
+            <h2>Bing Concert Hall</h2>
+            <img src="bing_hall.jpg" alt="Bing Concert Hall" class="content-image">
+            <p>
+                The Bing Concert Hall at Stanford will play a vital role on campus and in the local community. The hall's exceptional acoustics and state-of-the-art technical capabilities will showcase the world's finest performers.
+            </p>
+            <div class="clear"></div>
+            <p>
+                The hall is scheduled to open early in 2013. The concert hall will have 844 seats in an intimate vineyard-style configuration, with terraced sections wrapping all the way around the stage.
+            </p>
+        </div>
+
+        <div class="right-col">
+            <h2>Calendar</h2>
+            <ul>
+                <li>Harmony for Humanity: Daniel Pearl World Music Concert</li>
+                <li>Sundays with the St. Lawrence String Quartet</li>
+                <li>Merce Cunningham Dance Company</li>
+                <li>Juilliard String Quartet</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
