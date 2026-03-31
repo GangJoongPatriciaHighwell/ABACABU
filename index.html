@@ -14,19 +14,15 @@
 
         body, h1, h2, ul, li, p { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* ------------------ 전체 배경 움짤 설정 ------------------ */
         body { 
             font-family: 'Orbitron', sans-serif; 
             color: var(--text-main); 
-            
-            /* 핵심: va11halla 움짤을 배경 전체로 쫙 깝니다 */
             background-image: url('va11halla.gif');
-            background-size: cover; /* 화면을 꽉 채우도록 비율 조정 */
-            background-position: center top; /* 윗부분 글씨가 잘리지 않게 상단 기준 정렬 */
-            background-attachment: fixed; /* 스크롤해도 배경 움짤은 제자리에 고정 */
+            background-size: cover; 
+            background-position: center top; 
+            background-attachment: fixed; 
             background-repeat: no-repeat;
-            background-color: #050a14; /* 만약의 경우를 위한 대체 배경색 */
-            
+            background-color: #050a14; 
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
@@ -34,31 +30,28 @@
             min-height: 100vh;
         }
 
-        /* 배경 전체에 어두운 오버레이 & 스캔라인 씌우기 (글씨 가독성 확보) */
         body::before {
             content: '';
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(5, 10, 20, 0.6); /* 움짤 위에 반투명 검은색을 살짝 덮음 */
+            background-color: rgba(5, 10, 20, 0.6); 
             background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2) 2px, transparent 2px, transparent 4px);
-            pointer-events: none; /* 클릭 방해 안 하게 설정 */
+            pointer-events: none; 
             z-index: -1;
         }
 
-        /* ------------------ 메인 컨테이너 ------------------ */
         .main-wrapper {
             position: relative;
             z-index: 10;
             width: 100%;
             max-width: 1200px;
-            margin-top: 12vh; /* 화면 중앙쯤에 자연스럽게 배치되도록 여백 */
+            margin-top: 12vh; 
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-bottom: 100px;
         }
 
-        /* ------------------ 프로필 & 이미지 영역 ------------------ */
         .profile-row {
             display: flex;
             justify-content: center;
@@ -67,12 +60,11 @@
             width: 100%;
         }
 
-        /* 프로필 카드 (배경이 비치는 유리 질감) */
         .profile-card {
             flex: 1;
             max-width: 600px;
-            background-color: rgba(5, 10, 20, 0.7); /* 더 투명하게 해서 뒤에 움짤이 잘 비치게 함 */
-            backdrop-filter: blur(12px); /* 강력한 블러 효과 */
+            background-color: rgba(5, 10, 20, 0.7); 
+            backdrop-filter: blur(12px); 
             padding: 50px;
             border-radius: 15px;
             border: 2px solid var(--neon-cyan);
@@ -107,7 +99,6 @@
         }
         .info-value { color: #fff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 
-        /* 라쳇 이미지 카드 */
         .image-card {
             width: 350px;
             border-radius: 15px;
@@ -134,12 +125,11 @@
             pointer-events: none;
         }
 
-        /* ------------------ 과제(HOMEWORK) 메뉴 영역 ------------------ */
         .homework-section {
             width: 100%;
             max-width: 800px;
             margin-top: 60px;
-            background-color: rgba(5, 10, 20, 0.7); /* 유리 질감 추가 */
+            background-color: rgba(5, 10, 20, 0.7); 
             backdrop-filter: blur(10px);
             border: 1px solid var(--neon-cyan);
             border-radius: 15px;
@@ -192,10 +182,9 @@
         .sub-menu a { padding: 12px 30px; font-size: 1.1em; color: #aaa; text-shadow: none;}
         .sub-menu a:hover { color: var(--neon-magenta); text-shadow: 0 0 8px var(--neon-magenta); }
 
-        .has-submenu.open .sub-menu { max-height: 300px; }
+        .has-submenu.open .sub-menu { max-height: 400px; }
         .has-submenu.open .hw-toggle-btn::after { transform: rotate(-180deg); color: var(--neon-magenta); }
 
-        /* ------------------ 반응형 설정 ------------------ */
         @media (max-width: 900px) {
             .main-wrapper { margin-top: 8vh; }
             .profile-row { flex-direction: column; align-items: center; }
@@ -249,36 +238,42 @@
                     <div class="hw-toggle-btn" id="hw3-btn">HOMEWORK 3</div>
                     <ul class="sub-menu">
                         <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework3-1.php" target="_blank">3-1 Sum, Factorial</a></li>
-                        
                         <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework3-2-1.html" target="_blank">3-2 Sorting</a></li>
-                        
                         <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework3-3-1.html" target="_blank">3-3 Fibonacci</a></li>
-                        
                         <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework3-4.html" target="_blank">3-4 도형 계산기</a></li>
-                        
                         <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework3-5.php" target="_blank">3-5 Calendar</a></li>
                     </ul>
                 </li>
-                <li><a href="#">HOMEWORK 4</a></li>
+
+                <li class="has-submenu" id="hw4-container">
+                    <div class="hw-toggle-btn" id="hw4-btn">HOMEWORK 4</div>
+                    <ul class="sub-menu">
+                        <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework4.php" target="_blank">메인</a></li>
+                        <li><a href="https://github.com/GangJoongPatriciaHighwell/ABACABU/blob/main/homework4_list.php" target="_blank">리스트</a></li>
+                        <li><a href="https://youtu.be/QQyV5t9mSXA" target="_blank">https://youtu.be/QQyV5t9mSXA</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
 
     <script>
-        // HOMEWORK 2 버튼 작동 코드
         const hw2Container = document.getElementById('hw2-container');
         const hw2Btn = document.getElementById('hw2-btn');
-        
         hw2Btn.addEventListener('click', function() {
             hw2Container.classList.toggle('open');
         });
 
-        // HOMEWORK 3 버튼 작동 코드 (이 부분이 추가됨!)
         const hw3Container = document.getElementById('hw3-container');
         const hw3Btn = document.getElementById('hw3-btn');
-        
         hw3Btn.addEventListener('click', function() {
             hw3Container.classList.toggle('open');
+        });
+
+        const hw4Container = document.getElementById('hw4-container');
+        const hw4Btn = document.getElementById('hw4-btn');
+        hw4Btn.addEventListener('click', function() {
+            hw4Container.classList.toggle('open');
         });
     </script>
 
