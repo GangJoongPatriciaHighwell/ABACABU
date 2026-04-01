@@ -195,7 +195,7 @@ if (isset($_GET["name"]) && isset($_GET["select"])) {
 ?>
 
 <br>
-<a href="list.php">전체 리스트 보기</a>
+<a href="homework4_list.php">전체 리스트 보기</a>
 
 </body>
 </html>
