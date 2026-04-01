@@ -1,6 +1,6 @@
 <html>
 <body>
-
+<h2> 놀이공원 입장권 구매 </h2>
 <style>
 table {
   font-family: arial, sans-serif;
@@ -168,7 +168,8 @@ if (isset($_GET["name"]) && isset($_GET["select"])) {
     }
     else {
         echo "<br>";
-        echo date("Y년 m월 d일 H:i") . "<br>";
+        date_default_timezone_set("Asia/Seoul");
+        echo date("Y년 m월 d일 H:i:s a") . "<br>";
         echo $name . " 고객님 감사합니다.<br>";
 
         if ($select1 > 0) echo "어린이 입장권 " . $select1 . "매<br>";
