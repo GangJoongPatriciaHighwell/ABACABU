@@ -47,3 +47,20 @@ public class Homework1_1 {
 }
 ```
 ![Alt homework11](./images/KakaoTalk_20260907_142002131.jpg)
+```java
+public class Homework1_2 {
+    public static void main(String[] args) {
+
+        int a = 1, b = 1, c;
+
+        for(int i = 1; i <= 20; i++) {
+            System.out.print(a + " ");
+
+            c = a + b;
+            a = b;
+            b = c;
+        }
+    }
+}
+```
+![Alt homework12](./images/스크린샷 2026-09-07 232406.png)
