@@ -1,3 +1,4 @@
+```java
 public class Homework1_1 {
     public static void main(String[] args) {
 
@@ -44,3 +45,5 @@ public class Homework1_1 {
         }
     }
 }
+```
+![Alt homework11](./images/KakaoTalk_20260907_142002131.jpg)
