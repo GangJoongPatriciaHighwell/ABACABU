@@ -63,7 +63,7 @@ public class Homework1_2 {
     }
 }
 ```
-![Alt homework12](./images/images/Homework1_2)
+![Alt homework12](./images/Homework1_2)
 ```java
 public class Homework1_3 {
     public static void main(String[] args) {
@@ -83,7 +83,7 @@ public class Homework1_3 {
     }
 }
 ```
-![Alt homework13](./images/images/Homework1_3)
+![Alt homework13](./images/Homework1_3)
 ```java
 public class Homework1_4 {
     public static void main(String[] args) {
@@ -99,4 +99,4 @@ public class Homework1_4 {
     }
 }
 ```
-![Alt homework14](./images/images/Homework1_4)
+![Alt homework14](./images/Homework1_4)
