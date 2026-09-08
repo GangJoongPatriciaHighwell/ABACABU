@@ -124,7 +124,7 @@ public class Homework5 {
     }
 }
 ```
-![Alt homework5](./images/Homework5)
+![Alt homework5](./images/Homework5.png)
 ```java
 public class Homework5_2 {
 
@@ -145,7 +145,7 @@ public class Homework5_2 {
     }
 }
 ```
-![Alt homework5_2](./images/Homework5_2)
+![Alt homework5_2](./images/Homework5_2.png)
 ```java
 public class Homework6 {
 
@@ -173,7 +173,7 @@ public class Homework6 {
     }
 }
 ```
-![Alt homework6](./images/Homework6)
+![Alt homework6](./images/Homework6.png)
 ```java
 
 public class Homework7 {
@@ -213,4 +213,4 @@ public class Homework7 {
         
 }
 ```
-![Alt homework7](./images/Homework7)
+![Alt homework7](./images/Homework7.png)
