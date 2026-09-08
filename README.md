@@ -1,6 +1,6 @@
 OOP 2026
 ```java
-public class Homework1_1 {
+public class Homework1 {
     public static void main(String[] args) {
 
         int i, j;
@@ -49,7 +49,7 @@ public class Homework1_1 {
 ```
 ![Alt homework11](./images/Homework1_1)
 ```java
-public class Homework1_2 {
+public class Homework2 {
     public static void main(String[] args) {
 
         int a = 1, b = 1, c;
@@ -66,7 +66,7 @@ public class Homework1_2 {
 ```
 ![Alt homework12](./images/Homework1_2)
 ```java
-public class Homework1_3 {
+public class Homework3 {
     public static void main(String[] args) {
 
         int a = 1, b = 1, c;
@@ -86,7 +86,7 @@ public class Homework1_3 {
 ```
 ![Alt homework13](./images/Homework1_3)
 ```java
-public class Homework1_4 {
+public class Homework4 {
     public static void main(String[] args) {
 
         int i, j;
