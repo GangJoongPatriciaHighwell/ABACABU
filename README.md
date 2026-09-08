@@ -214,3 +214,35 @@ public class Homework7 {
 }
 ```
 ![Alt homework7](./images/Homework7.png)
+```java
+public class Homework8 {
+
+    public static void main(String[] args) {
+
+        int score[][] = new int[30][4];
+        int sum;
+
+        for(int i=0; i<30; i++) {
+
+            for(int j=0; j<4; j++) {
+                score[i][j] = (int)(Math.random()*101);
+            }
+        }
+
+        for(int i=0; i<30; i++) {
+
+            sum = 0;
+
+            System.out.print((i+1) + " ");
+
+            for(int j=0; j<4; j++) {
+                System.out.print(score[i][j] + " ");
+                sum = sum + score[i][j];
+            }
+
+            System.out.println("sum=" + sum);
+        }
+    }
+}
+```
+![Alt homework8](./images/Homework8.png)
