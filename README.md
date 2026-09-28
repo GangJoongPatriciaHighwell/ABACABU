@@ -329,7 +329,6 @@ public class Homework11 {
 
         System.out.println();
 
-        // 산술평균
         double sum = 0;
 
         for(int i=0; i<array_count; i++) {
@@ -341,7 +340,6 @@ public class Homework11 {
         System.out.println("arithmetic mean = " + arithmetic);
 
 
-        // 기하평균
         double prod = 1;
 
         for(int i=0; i<array_count; i++) {
@@ -353,8 +351,6 @@ public class Homework11 {
 
         System.out.println("geometric mean = " + geometric);
 
-
-        // 조화평균
         double reciprocalSum = 0;
 
         for(int i=0; i<array_count; i++) {
@@ -368,7 +364,6 @@ public class Homework11 {
         System.out.println("harmarmonic mean = " + harmonic);
 
 
-        // 중앙값
         Arrays.sort(arr);
 
         double median;
@@ -411,7 +406,6 @@ public class Homework13 {
 
             String[] arrOfStr = inputString.split(" ");
 
-            // 숫자 2개
             if(arrOfStr.length == 3) {
 
                 double a = Double.parseDouble(arrOfStr[0]);
@@ -437,7 +431,6 @@ public class Homework13 {
             }
 
 
-            // 숫자 3개
             else if(arrOfStr.length == 5) {
 
                 double a = Double.parseDouble(arrOfStr[0]);
