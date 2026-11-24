@@ -676,3 +676,256 @@ public class Homework14_Test {
 ```
 
 ![Alt homework14](./images/Homework14.png)
+
+```java
+public class C2048 {
+    int value[][] = new int[4][4];
+    int score;
+
+    C2048() {
+        init();
+    }
+
+    void init() {
+        value = new int[4][4];
+        score = 0;
+        update();
+        update();
+    }
+
+    void update() {
+        int count = 0;
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                if (value[i][j] == 0)
+                    count++;
+
+        if (count == 0)
+            return;
+
+        int n = (int)(Math.random()*count);
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                if (value[i][j] == 0) {
+                    if (n == 0) {
+                        value[i][j] = ((int)(Math.random()*2)+1)*2;
+                        return;
+                    }
+                    n--;
+                }
+    }
+
+    void left() {
+        move(0);
+        display();
+    }
+
+    void right() {
+        move(1);
+        display();
+    }
+
+    void up() {
+        move(2);
+        display();
+    }
+
+    void down() {
+        move(3);
+        display();
+    }
+
+    void move(int direction) {
+        boolean changed = false;
+
+        for (int i=0; i<4; i++) {
+            int temp[] = new int[4];
+            int result[] = new int[4];
+            int count = 0;
+
+            for (int j=0; j<4; j++) {
+                int x = direction < 2 ? i : (direction == 2 ? j : 3-j);
+                int y = direction < 2 ? (direction == 0 ? j : 3-j) : i;
+
+                if (value[x][y] != 0)
+                    temp[count++] = value[x][y];
+            }
+
+            int k = 0;
+
+            for (int j=0; j<count; j++) {
+                if (j+1<count && temp[j] == temp[j+1]) {
+                    result[k] = temp[j]*2;
+                    score += result[k];
+                    k++;
+                    j++;
+                }
+                else
+                    result[k++] = temp[j];
+            }
+
+            for (int j=0; j<4; j++) {
+                int x = direction < 2 ? i : (direction == 2 ? j : 3-j);
+                int y = direction < 2 ? (direction == 0 ? j : 3-j) : i;
+
+                if (value[x][y] != result[j])
+                    changed = true;
+                value[x][y] = result[j];
+            }
+        }
+
+        if (changed)
+            update();
+    }
+
+    boolean gameOver() {
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++) {
+                if (value[i][j] == 0)
+                    return false;
+                if (i<3 && value[i][j] == value[i+1][j])
+                    return false;
+                if (j<3 && value[i][j] == value[i][j+1])
+                    return false;
+            }
+        return true;
+    }
+
+    boolean won() {
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                if (value[i][j] >= 2048)
+                    return true;
+        return false;
+    }
+
+    void display() {
+        for (int i=0; i<4; i++) {
+            for (int j=0; j<4; j++)
+                System.out.printf("%5d ", value[i][j]);
+            System.out.println();
+        }
+        System.out.println();
+    }
+}
+```
+```java
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class C2048Player {
+    C2048 obj = new C2048();
+    JLabel tile[][] = new JLabel[4][4];
+    JLabel scoreLabel = new JLabel();
+    JLabel message = new JLabel(" ", SwingConstants.CENTER);
+    Color colors[] = {
+        new Color(0xCDC1B4), new Color(0xEEE4DA), new Color(0xEDE0C8),
+        new Color(0xF2B179), new Color(0xF59563), new Color(0xF67C5F),
+        new Color(0xF65E3B), new Color(0xEDCF72), new Color(0xEDCC61),
+        new Color(0xEDC850), new Color(0xEDC53F), new Color(0xEDC22E)
+    };
+
+    void show() {
+        JFrame frame = new JFrame("2048");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setBackground(new Color(0xFAF8EF));
+
+        JPanel top = new JPanel(new BorderLayout());
+        top.setOpaque(false);
+        scoreLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
+        JButton restart = new JButton("다시 시작");
+        top.add(scoreLabel, BorderLayout.WEST);
+        top.add(restart, BorderLayout.EAST);
+        panel.add(top, BorderLayout.NORTH);
+
+        JPanel board = new JPanel(new GridLayout(4, 4, 8, 8));
+        board.setBackground(new Color(0xBBADA0));
+        board.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        board.setPreferredSize(new Dimension(420, 420));
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++) {
+                tile[i][j] = new JLabel("", SwingConstants.CENTER);
+                tile[i][j].setOpaque(true);
+                tile[i][j].setFont(new Font("SansSerif", Font.BOLD, 30));
+                board.add(tile[i][j]);
+            }
+
+        panel.add(board, BorderLayout.CENTER);
+        panel.add(message, BorderLayout.SOUTH);
+        frame.setContentPane(panel);
+
+        restart.addActionListener(e -> {
+            obj.init();
+            refresh();
+        });
+
+        int keys[] = {KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT,
+                      KeyEvent.VK_UP, KeyEvent.VK_DOWN};
+
+        for (int i=0; i<4; i++) {
+            final int direction = i;
+            String name = "move" + i;
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                 .put(KeyStroke.getKeyStroke(keys[i], 0), name);
+            panel.getActionMap().put(name, new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    if (direction == 0)
+                        obj.left();
+                    else if (direction == 1)
+                        obj.right();
+                    else if (direction == 2)
+                        obj.up();
+                    else
+                        obj.down();
+                    refresh();
+                }
+            });
+        }
+
+        restart.setFocusable(false);
+        refresh();
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    void refresh() {
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++) {
+                int n = obj.value[i][j];
+                tile[i][j].setText(n == 0 ? "" : String.valueOf(n));
+
+                int index = 0;
+                for (int k=n; k>1; k/=2)
+                    index++;
+
+                tile[i][j].setBackground(colors[Math.min(index, colors.length-1)]);
+                tile[i][j].setForeground(n<=4 ? new Color(0x776E65) : Color.WHITE);
+            }
+
+        scoreLabel.setText("점수: " + obj.score);
+
+        if (obj.gameOver())
+            message.setText("게임 종료! 다시 시작을 누르세요.");
+        else if (obj.won())
+            message.setText("2048 달성! 계속 플레이할 수 있습니다.");
+        else
+            message.setText("방향키로 숫자를 이동하세요.");
+    }
+
+    public static void main(String args[]) {
+        SwingUtilities.invokeLater(() -> new C2048Player().show());
+    }
+}
+
+```
+![Alt homework8](./images/Homework15.png)
+![Alt homework8](./images/Homework15_2.png)
